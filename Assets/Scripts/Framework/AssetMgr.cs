@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -40,7 +41,7 @@ public static class AssetMgr
     /// <param name="assetLoadType">资源加载类型，临时资源和永久资源</param>
     /// <typeparam name="T">资源类型</typeparam>
     /// <returns></returns>
-    public static async Task<T> LoadAssetAsync<T>(string path, AssetLoadType assetLoadType = AssetLoadType.Permanent) where T : Object
+    public static async UniTask<T> LoadAssetAsync<T>(string path, AssetLoadType assetLoadType = AssetLoadType.Permanent) where T : UnityEngine.Object
     {
         if (string.IsNullOrEmpty(path))
         {
@@ -48,35 +49,46 @@ public static class AssetMgr
             return null;
         }
 
-        //如果之前字典里还不存在这种加载类型 就初始化一下键值对 
+        // 如果之前字典里还不存在这种加载类型 就初始化一下键值对 
         if (!m_LoadTypeToHandleDict.ContainsKey(assetLoadType))
         {
             m_LoadTypeToHandleDict.Add(assetLoadType, new Dictionary<string, AsyncOperationHandle>());
         }
-        //获取到目标类型的字典
+    
+        // 获取到目标类型的字典
         var dict = m_LoadTypeToHandleDict[assetLoadType];
 
-        //如果字典里已经包含 那么就不重复加载，直接获取之前加载的
+        // 如果字典里已经包含 那么就不重复加载，直接获取之前加载的
         var isRepeatLoad = dict.ContainsKey(path);
         AsyncOperationHandle<T> handle = isRepeatLoad ? dict[path].Convert<T>() : Addressables.LoadAssetAsync<T>(path);
-        if (!isRepeatLoad)//如果还未加载过，就将其加入字典里
+    
+        if (!isRepeatLoad) // 如果还未加载过，就将其加入字典里
         {
             dict.Add(path, handle);
         }
 
-        //如果之前已经加载过此资源，那么直接将结果返回
+        // 如果之前已经加载过此资源，那么直接将结果返回
         if (handle.IsDone) return handle.Result;
-        //等待加载完成 如果加载成功 就将其返回
-        await handle.Task;
-        if (handle.Status == AsyncOperationStatus.Succeeded) return handle.Result;
 
-        //如果加载失败 就清理一下脏数据 避免对后续加载造成影响
+        // 等待加载完成，如果加载成功就将其返回
+        await handle.Task; 
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            return handle.Result;
+        }
+
+        // 如果加载失败，就清理一下脏数据，避免对后续加载造成影响
         Debug.LogError($"加载失败 path:{path}");
-        if (!dict.ContainsKey(path)) return null;
-        dict.Remove(path);
+        if (dict.ContainsKey(path))
+        {
+            dict.Remove(path);
+        }
+    
         Addressables.Release(handle);
         return null;
     }
+
 
     /// <summary>
     /// 异步加载资源，通过回调函数的方式
