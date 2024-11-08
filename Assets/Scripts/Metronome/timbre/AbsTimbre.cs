@@ -4,21 +4,26 @@ using UnityEngine;
 
 namespace Metronome.timbre
 {
+    /// <summary>
+    /// 音色的抽象类
+    /// </summary>
     public abstract class AbsTimbre:ITimbre
     {
-        public AbsTimbre(AudioClip clip,string name)
+        public AbsTimbre(Timbre_SO so)
         {
-            _clip = clip;
-            _name = name;
+            _clip = so.AudioClip;
+            _name = so.AudioFileName;
         }
         
         
         private AudioClip _clip;
         public AudioClip Clip => _clip;
+        
+        private EventManager<TimbreEvent> _eventManager = new EventManager<TimbreEvent>();
+        public EventManager<TimbreEvent> EventManager => _eventManager;
 
         private readonly string _name;
         public string Name => _name;
-        
         
     }
 }

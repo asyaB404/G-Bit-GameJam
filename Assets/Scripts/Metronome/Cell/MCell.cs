@@ -23,6 +23,15 @@ public class MCell
     
     public int ID => _info.Id;
 
+
+    /// <summary>
+    /// 改变单元的播放状态
+    /// </summary>
+    public void ChangePlayState()
+    {
+        _canplay = !_canplay;
+    }
+
     /// <summary>
     /// 节点播放的音色
     /// </summary>

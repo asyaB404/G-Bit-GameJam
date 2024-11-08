@@ -8,5 +8,7 @@ namespace Metronome.timbre
     {
         string Name { get; }
         AudioClip Clip { get; }
+        
+        EventManager<TimbreEvent> EventManager { get; }
     }
 }
