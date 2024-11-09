@@ -10,10 +10,10 @@ public class MCell
         _info = info;
     }
     
-    //一个鼓点单元的事件
-    private EventManager<CellEventKinds> eventManager = new EventManager<CellEventKinds>();
-    public EventManager<CellEventKinds> EventManager => eventManager;
 
+    /// <summary>
+    /// 尝试一下
+    /// </summary>
     private bool _canplay;
     public bool Canplay => _canplay;
     
@@ -40,7 +40,10 @@ public class MCell
     {
         if (_canplay)
         {
+            timbre.EventManager.Dispatch(TimbreEvent.BegainHit);
+            AudioManager.Instance.PlaySound(timbre.Clip);
             Debug.Log("音色 "+timbre + "序号 " + ID);
+            timbre.EventManager.Dispatch(TimbreEvent.AfterHit);
         }
     }
 }

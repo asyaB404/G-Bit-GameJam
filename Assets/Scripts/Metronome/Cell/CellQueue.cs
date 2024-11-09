@@ -68,17 +68,20 @@ namespace Metronome
         /// <summary>
         /// 向节点添加
         /// </summary>
-        public void AddCell()
+        public MCell AddCell()
         {
-            _celllist.AddLast(new MCell(new CellInfo(_celllist.Count)));
+            var a = _celllist.AddLast(new MCell(new CellInfo(_celllist.Count)));
+            return a.Value;
         }
 
         /// <summary>
         /// 将节点删除
         /// </summary>
-        public void RemoveCell()
+        public MCell RemoveCell()
         {
+            var a = _celllist.Last.Value;
             _celllist.RemoveLast();
+            return a;
         }
     }
 }
