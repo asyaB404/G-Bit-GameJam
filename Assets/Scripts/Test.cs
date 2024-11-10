@@ -1,21 +1,31 @@
-using Cysharp.Threading.Tasks;
-using Metronome;
 using Metronome.timbre;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Test : MonoBehaviour
 {
-    public Timbre_SO audioClip;
-    public Timbre_SO audioClip2;
+    public Timbre_SO audioClip_0;
+    public Timbre_SO audioClip_1;
+    public Timbre_SO audioClip_2;
+
+    public Button PlayButton;
+    public Button PauseButton;
+    public Button AddButton;
+    public Button SubButton;
+    public Slider BPMSlider;
+    
+    public Text BPMText;
+
+    private int BPM = 60;
     
     private async void Start()
     {
-       var a = new Timbre_Common(audioClip2);
-       var b = new Timbre_Common(audioClip);
-       var v = new Timbre_Common(audioClip);
-       var m = new Timbre_Common(audioClip2);
+       var a = new Timbre_Common(audioClip_2);
+       var b = new Timbre_Common(audioClip_0);
+       var c = new Timbre_Common(audioClip_1);
        
-       v.EventManager.AddListener(TimbreEvent.BeginPlay,(() => Debug.Log("开始使用V音色")));
+       
+       a.EventManager.AddListener(TimbreEvent.BeginPlay,(() => Debug.Log("开始使用V音色")));
        b.EventManager.AddListener(TimbreEvent.BeginPlay,(() => Debug.Log("开始使用B音色")));
        b.EventManager.AddListener(TimbreEvent.BegainHit,(() => Debug.Log("B使用之前的判断")));
        b.EventManager.AddListener(TimbreEvent.AfterHit,(() => Debug.Log("B使用后的判断")));
@@ -23,36 +33,29 @@ public class Test : MonoBehaviour
        b.EventManager.AddListener(TimbreEvent.EndLoop,(() => Debug.Log("循环结束")));
        PlayManage mc = new PlayManage();
        mc.AddTimbre(b);
-     //  mc.AddTimbre(a);
-       
+       mc.AddTimbre(a);
+       mc.AddTimbre(c); 
+       mc.AddTimbre(new Timbre_Common(audioClip_0)); 
        mc.AddCell(6);
-       mc.Play(200);
+
+
+       PlayButton.onClick.AddListener(() => mc.Play((int)BPM));
+       PauseButton.onClick.AddListener(()=>mc.Stop());
+       AddButton.onClick.AddListener(()=>mc.AddCell(3));
+       SubButton.onClick.AddListener(()=>mc.RemoveCell(3));;
+       
+     //  mc.Play(200);
        
         
+       Debug.Log("节点数 "+mc.Controller.CellCount);
+       Debug.Log("音色数 "+mc.Controller.TimbreCount);
+        
+    }
 
-      await UniTask.WaitForSeconds(5);
-      mc.AddCell(6);
-      mc.AddTimbre(v);
-        
-        
-        Debug.Log("节点数 "+mc.Controller.CellCount);
-        Debug.Log("音色数 "+mc.Controller.TimbreCount);
-        
-        
-        
-        
-        // await UniTask.WaitForSeconds(3);
-        // Debug.LogWarning("暂停中");
-        // pm.Puase();
-        //
-        // Debug.LogWarning("删除音色1轨道");
-        //
-        // pm.Controller.DeleteTimbre(b);
-        // await UniTask.WaitForSeconds(3);
-        // Debug.LogWarning("继续播放");
-        // pm.Continue();
-        // await UniTask.WaitForSeconds(3);
-        // pm.Stop();
-        
+    private void Update()
+    {
+        BPM = (int)BPMSlider.value;
+        Debug.Log(BPM);
+        BPMText.text = BPM.ToString();
     }
 }
