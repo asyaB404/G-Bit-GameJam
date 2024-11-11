@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 1bbf4bfbe286c3046a645fe2b5c9b16c
+  m_DefaultGroup: c02358c5310649946b767b2ddbc11b93
   m_currentHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
-  - {fileID: 11400000, guid: c1298c52b30bbd84d840d72b62261ca4, type: 2}
   - {fileID: 11400000, guid: 37217e89fde3f954d889effbcbec4994, type: 2}
+  - {fileID: 11400000, guid: b991b33ae852d6941b493bc8c210d959, type: 2}
+  - {fileID: 11400000, guid: 1165aa6715af8b94fafd87676dbe2f19, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -87,6 +88,8 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Assets
+    - Assets-AddressableAssets-Audio
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 40e2d8c664a38dc4bbb6d4f43eaa670c, type: 2}
