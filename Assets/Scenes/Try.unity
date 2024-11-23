@@ -1576,7 +1576,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!212 &1208794787
 SpriteRenderer:
   m_ObjectHideFlags: 0
