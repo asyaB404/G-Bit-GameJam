@@ -24,7 +24,11 @@ namespace Other
         {
             get
             {
-                content ??= (RectTransform)transform.parent;
+                // content ??= (RectTransform)transform.parent;
+                if (content == null)
+                {
+                    content = (RectTransform)transform.parent;
+                }
                 return content;
             }
         }
@@ -37,18 +41,18 @@ namespace Other
         private void OnClick()
         {
             // 原来的位置
-            var position = Content.position;
+            var localPosition = Content.localPosition;
             if (isVisible)
             {
                 // 1080需要替换为Canvas相对的分辨率
-                position.y = (1080 + Content.sizeDelta.y) / 2;
+                localPosition.y = (1080 + Content.sizeDelta.y) / 2;
             }
             else
             {
-                position.y = 0;
+                localPosition.y = 0;
             }
 
-            Content.position = position;
+            Content.localPosition = localPosition;
             isVisible = !isVisible;
         }
     }
