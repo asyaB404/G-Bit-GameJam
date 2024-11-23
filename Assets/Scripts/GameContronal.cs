@@ -6,9 +6,12 @@ using GameTools.MonoTool;
 using GameTools.MonoTool.Player;
 using Metronome.timbre;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameContronal : MonoBehaviour
 {
+    [Header("开始")] public Button StartB;
+    
     private PlayManage _playManage;
     public PlayManage PlayManage => _playManage;
 
@@ -45,6 +48,11 @@ public class GameContronal : MonoBehaviour
 
     private void Start()
     {
+        
+        StartB.onClick.AddListener((() =>
+        {
+            _playManage.Play(BPM);
+        }));
         _timbre[0].EventManager.AddListener(TimbreEvent.AfterHit,(() =>
         {
             foreach (var p in Platform)
@@ -59,11 +67,14 @@ public class GameContronal : MonoBehaviour
                 }
             }
         }));
-        
-        _playManage.
+        _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore,(() =>
+        {
+            Player.transform.position = new Vector3(_player.transform.position.x+1.25f, _player.transform.position.y, _player.transform.position.z);
+        }));
+       
         
         _playManage.AddTimbre(_timbre[0]);
         _playManage.AddCell(8);
-        _playManage.Play(BPM);
+        
     }
 }
