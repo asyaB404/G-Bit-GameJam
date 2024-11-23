@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace GameTools.MonoTool
 {
-    public class Platform:MonoBehaviour,IGameTool,ICanTouch
+    public class Platform:Abs_Tool
     {
-        public void Touch()
+        public override void Touch()
         {
-            Debug.Log("Platform touched");
+            Debug.Log("触碰平台");
         }
     }
 }

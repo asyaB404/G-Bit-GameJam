@@ -934,6 +934,7 @@ GameObject:
   - component: {fileID: 973109108}
   - component: {fileID: 973109110}
   - component: {fileID: 973109109}
+  - component: {fileID: 973109111}
   m_Layer: 0
   m_Name: 1 (4)
   m_TagString: Untagged
@@ -1053,6 +1054,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &973109111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973109107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cbd3c854964391a6fae9c18e0445e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1077208517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1077,7 @@ GameObject:
   - component: {fileID: 1077208520}
   - component: {fileID: 1077208519}
   - component: {fileID: 1077208518}
+  - component: {fileID: 1077208521}
   m_Layer: 0
   m_Name: 1 (1)
   m_TagString: Untagged
@@ -1183,6 +1197,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1709751588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077208521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077208517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cbd3c854964391a6fae9c18e0445e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1162903806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1220,7 @@ GameObject:
   - component: {fileID: 1162903809}
   - component: {fileID: 1162903808}
   - component: {fileID: 1162903807}
+  - component: {fileID: 1162903810}
   m_Layer: 0
   m_Name: 1 (3)
   m_TagString: Untagged
@@ -1313,6 +1340,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1709751588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1162903810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162903806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cbd3c854964391a6fae9c18e0445e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1185202741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1363,7 @@ GameObject:
   - component: {fileID: 1185202742}
   - component: {fileID: 1185202744}
   - component: {fileID: 1185202743}
+  - component: {fileID: 1185202745}
   m_Layer: 0
   m_Name: 1 (2)
   m_TagString: Untagged
@@ -1443,6 +1483,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1185202745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185202741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cbd3c854964391a6fae9c18e0445e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1208794784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1507,7 @@ GameObject:
   - component: {fileID: 1208794787}
   - component: {fileID: 1208794786}
   - component: {fileID: 1208794785}
+  - component: {fileID: 1208794789}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1591,6 +1644,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2024292365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208794789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208794784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f0cd3c5ad0463aa92e44f26f1c137c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1627675282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,6 +1893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c0a1c76934ba04a8c2ddd4c2c111c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartB: {fileID: 419830562}
   BPM: 140
   audioChilps:
   - {fileID: 11400000, guid: 76879e89cf1e76043877acee2aa7aefc, type: 2}

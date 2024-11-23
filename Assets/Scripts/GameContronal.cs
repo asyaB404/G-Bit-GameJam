@@ -27,7 +27,7 @@ public class GameContronal : MonoBehaviour
     //音色实例
     private List<Timbre_Common> _timbre = new List<Timbre_Common>();
 
-    private List<Platform> Platform;
+    private List<Abs_Tool> _tools;
     void Awake()
     {
         //控制器
@@ -41,8 +41,8 @@ public class GameContronal : MonoBehaviour
         }
         
         //找到场景中工具(平台)
-        Platform = GameObject.FindObjectsOfType<Platform>().ToList();
-        Debug.Log(Platform.Count);
+        _tools = GameObject.FindObjectsOfType<Abs_Tool>().ToList();
+        Debug.Log(_tools.Count);
         
     }
 
@@ -55,7 +55,7 @@ public class GameContronal : MonoBehaviour
         }));
         _timbre[0].EventManager.AddListener(TimbreEvent.AfterHit,(() =>
         {
-            foreach (var p in Platform)
+            foreach (var p in _tools)
             {
                 if (p.transform.position.y < 0)
                 {
