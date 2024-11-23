@@ -29,13 +29,11 @@ namespace Other
         {
             get
             {
+                if (_canvas != null) return _canvas;
+                _canvas = GetComponentInParent<Canvas>();
                 if (_canvas == null)
                 {
-                    _canvas = GetComponentInParent<Canvas>();
-                    if (_canvas == null)
-                    {
-                        Debug.LogError("Canvas不见了");
-                    }
+                    Debug.LogError("Canvas不见了");
                 }
 
                 return _canvas;
@@ -80,13 +78,11 @@ namespace Other
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (IsPointerOnEdge(eventData.position))
+            if (!IsPointerOnEdge(eventData.position)) return;
+            _isDragging = true;
+            if (CurCanvasGroup != null)
             {
-                _isDragging = true;
-                if (_canvasGroup != null)
-                {
-                    _canvasGroup.blocksRaycasts = false; // 拖拽时不阻挡射线
-                }
+                CurCanvasGroup.blocksRaycasts = false; // 拖拽时不阻挡射线
             }
         }
 
@@ -100,9 +96,9 @@ namespace Other
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (_isDragging && _canvasGroup != null)
+            if (_isDragging && CurCanvasGroup != null)
             {
-                _canvasGroup.blocksRaycasts = true; // 恢复射线阻挡
+                CurCanvasGroup.blocksRaycasts = true; // 恢复射线阻挡
             }
 
             _isDragging = false;
