@@ -19,10 +19,41 @@ namespace Other
         private Canvas _canvas;
         private CanvasGroup _canvasGroup;
 
+
         [Tooltip("允许拖拽的边缘宽度")] [SerializeField]
         private float edgeWidth = 10f;
 
         private bool _isDragging = false;
+
+        private Canvas CurCanvas
+        {
+            get
+            {
+                if (_canvas == null)
+                {
+                    _canvas = GetComponentInParent<Canvas>();
+                    if (_canvas == null)
+                    {
+                        Debug.LogError("Canvas不见了");
+                    }
+                }
+
+                return _canvas;
+            }
+        }
+        
+        private CanvasGroup CurCanvasGroup
+        {
+            get
+            {
+                if (_canvasGroup == null)
+                {
+                    _canvasGroup = GetComponent<CanvasGroup>();
+                }
+
+                return _canvasGroup;
+            }
+        }
 
         private RectTransform CurRectTransform
         {
@@ -32,16 +63,7 @@ namespace Other
                 return _rectTransform;
             }
         }
-
-        private void Awake()
-        {
-            _canvas = GetComponentInParent<Canvas>();
-            _canvasGroup = GetComponent<CanvasGroup>();
-            if (_canvas == null)
-            {
-                Debug.LogError("Canvas不见了");
-            }
-        }
+        
 
         // 判断点击是否在边缘区域
         private bool IsPointerOnEdge(Vector2 pointerPosition)
@@ -70,10 +92,10 @@ namespace Other
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!_isDragging || _canvas == null) return;
+            if (!_isDragging || CurCanvas == null) return;
 
             // 将拖拽位移转换为相对于 Canvas 的局部坐标
-            CurRectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+            CurRectTransform.anchoredPosition += eventData.delta / CurCanvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
