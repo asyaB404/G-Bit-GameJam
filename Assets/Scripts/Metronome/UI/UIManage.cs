@@ -17,7 +17,7 @@ public class UIManage:IMetronomUI
    }
    public void Init()
    {
-      Main =  GameObject.Instantiate(Resources.Load<GameObject>("Canvas")).transform.GetChild(0).gameObject;
+      Main =  GameObject.Instantiate(AssetMgr.LoadAssetSync<GameObject>("Assets/AddressableAssets/Prefabs/Canvas.prefab")).transform.GetChild(0).gameObject;
    }
 
    public void AddTimbre(ITimbre timbre)
@@ -27,7 +27,7 @@ public class UIManage:IMetronomUI
          Debug.LogError("UI模块中已经注册该音色");
          return;
       }
-      var queue =  GameObject.Instantiate(Resources.Load<GameObject>("Queue"), Main.transform);
+      var queue =  GameObject.Instantiate(AssetMgr.LoadAssetSync<GameObject>("Assets/AddressableAssets/Prefabs/Queue.prefab"), Main.transform);
       _timbres.Add(timbre,queue);
    }
 
@@ -45,7 +45,7 @@ public class UIManage:IMetronomUI
    public void AddCell(ITimbre timbre,MCell cell)
    {
       
-         var cellg  = GameObject.Instantiate(Resources.Load<GameObject>("Cell"),_timbres[timbre].transform);
+         var cellg  = GameObject.Instantiate(AssetMgr.LoadAssetSync<GameObject>("Assets/AddressableAssets/Prefabs/Cell.prefab"),_timbres[timbre].transform);
          var buttoncell = cellg.GetComponent<Button>();
          buttoncell.onClick.AddListener(() =>
          {

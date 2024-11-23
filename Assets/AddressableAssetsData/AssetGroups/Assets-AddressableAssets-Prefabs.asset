@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Assets-AddressableAssets-Prefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: Assets-AddressableAssets-Prefabs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 72d89257b1023d04fb52b8bacf682f9e
+  m_SerializeEntries:
+  - m_GUID: 8451c51eb3dd86043aa92af38a7955e1
+    m_Address: Assets/AddressableAssets/Prefabs/Canvas.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 465f4fb4ff812824d94c756527f5c4d0
+    m_Address: Assets/AddressableAssets/Prefabs/Cell.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba53e8473a2068f43b48736e1d896f06
+    m_Address: Assets/AddressableAssets/Prefabs/Queue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bbf2907e4dec5d241bd97c8d2a7c536b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ea238b3045e7d3642b721c2141852069, type: 2}
+    - {fileID: 11400000, guid: 658d2d568d2f0b14d84466d80b2603e1, type: 2}

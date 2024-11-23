@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Assets-AddressableAssets-Audio
+  m_EditorClassIdentifier: 
+  m_GroupName: Assets-AddressableAssets-Audio
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b131d0eaf2b291a40b5923e6fa17c615
+  m_SerializeEntries:
+  - m_GUID: d142e220d6c94594c8bfaf7cda452861
+    m_Address: Assets/AddressableAssets/Audio/mika.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2988b26332660454f852afbef287f82a
+    m_Address: "Assets/AddressableAssets/Audio/\u536B\u661F_84.mp3"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bbf2907e4dec5d241bd97c8d2a7c536b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2abaf668dc8adf34eb94c01b185c0ce3, type: 2}
+    - {fileID: 11400000, guid: 6c36a27b48f9909468baa419382d3c8a, type: 2}
