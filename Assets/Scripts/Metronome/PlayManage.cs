@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Metronome;
 using Metronome.timbre;
@@ -25,7 +26,8 @@ public class PlayManage
     private UIManage _uimanage;
     public UIManage UIManage => _uimanage;
 
-    
+    private EventManager<PlayEvent> _eventManager = new EventManager<PlayEvent>();
+    public EventManager<PlayEvent> EventManager => _eventManager;
     /// <summary>
     /// 使用控制器构造
     /// </summary>
@@ -52,14 +54,19 @@ public class PlayManage
     
     public async void Play(int bpm)
     {
+        //如果游戏已经开始返回
         if (_isplaying)
         {
             Debug.LogWarning("Already playing");
             return;
         }
+        
+        //开始游戏
         _isplaying = true;
         float timestep = 60f / bpm;
-
+        //执行游戏开始等等全局事件
+        _eventManager.Dispatch(PlayEvent.OnStartPlay);
+        
         //触发所有开始播放音色的事件
         foreach (var V in _controller.Manager.Metronomemanage)
         {
@@ -70,17 +77,32 @@ public class PlayManage
         {
             if (!_isplaying)
             {
+                //执行游戏结束的事件
+                _eventManager.Dispatch(PlayEvent.OnEndPlay);
                 break;
             }
             if (_ispaused)
             {
+                //执行游戏暂停的事件
+                _eventManager.Dispatch(PlayEvent.OnPausePlay);
+                
                 await UniTask.WaitUntil(() => !_ispaused);
+                
+                //执行游戏进行的事件
+                _eventManager.Dispatch(PlayEvent.OnContinuePlay);
             }
             await UniTask.WaitForSeconds(timestep);
+            
+            //执行游戏本节拍前的事件
+            _eventManager.Dispatch(PlayEvent.OnHitsBefore);
+            
             _controller.PlayNext();
-        //    Debug.Log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            
+            //执行游戏本节拍后的事件
+            _eventManager.Dispatch(PlayEvent.OnHitsAfter);
         }
         
+        //所有音色结束的事件
         foreach (var V in _controller.Manager.Metronomemanage)
         {
             V.Key.EventManager.Dispatch(TimbreEvent.EndPlay);
@@ -156,4 +178,25 @@ public class PlayManage
     {
         _controller.RemoveCell(num,_uimanage);
     }
+}
+
+public enum PlayEvent
+{
+    //关卡开始结束
+    OnStartPlay,
+    OnEndPlay,
+    
+    //游戏暂停
+    OnPausePlay,
+    OnContinuePlay,
+    
+    //当同一个节拍的所有音色发声之前
+    OnHitsBefore,
+    //当同一个节拍的所有音色发声之后
+    OnHitsAfter,
+    
+    //一个循环开始和结束
+    OnCycleEnd,
+    OnCycleBegin,
+    
 }
