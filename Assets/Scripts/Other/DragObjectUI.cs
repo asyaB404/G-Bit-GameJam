@@ -12,7 +12,6 @@ using UnityEngine.EventSystems;
 
 namespace Other
 {
-    [ExecuteAlways]
     public class EdgeDraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         private RectTransform _rectTransform;
@@ -39,7 +38,7 @@ namespace Other
                 return _canvas;
             }
         }
-        
+
         private CanvasGroup CurCanvasGroup
         {
             get
@@ -61,7 +60,7 @@ namespace Other
                 return _rectTransform;
             }
         }
-        
+
 
         // 判断点击是否在边缘区域
         private bool IsPointerOnEdge(Vector2 pointerPosition)
@@ -102,43 +101,6 @@ namespace Other
             }
 
             _isDragging = false;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Color previousColor = Gizmos.color;
-            // 设置绘制颜色
-            Gizmos.color = Color.red;
-
-            // 获取 RectTransform 的世界坐标矩形
-            Vector3[] corners = new Vector3[4];
-            CurRectTransform.GetWorldCorners(corners);
-
-            // 分别计算四个内缩的边界点
-            Vector3 topLeftOuter = corners[1]; // 左上
-            Vector3 topRightOuter = corners[2]; // 右上
-            Vector3 bottomRightOuter = corners[3]; // 右下
-            Vector3 bottomLeftOuter = corners[0]; // 左下
-
-            // 根据 edgeWidth 内缩，计算边缘的内边界
-            Vector3 topLeftInner = topLeftOuter + new Vector3(edgeWidth, -edgeWidth, 0);
-            Vector3 topRightInner = topRightOuter + new Vector3(-edgeWidth, -edgeWidth, 0);
-            Vector3 bottomRightInner = bottomRightOuter + new Vector3(-edgeWidth, edgeWidth, 0);
-            Vector3 bottomLeftInner = bottomLeftOuter + new Vector3(edgeWidth, edgeWidth, 0);
-
-            // 绘制外部矩形边框
-            Gizmos.DrawLine(topLeftOuter, topRightOuter);
-            Gizmos.DrawLine(topRightOuter, bottomRightOuter);
-            Gizmos.DrawLine(bottomRightOuter, bottomLeftOuter);
-            Gizmos.DrawLine(bottomLeftOuter, topLeftOuter);
-
-            // 绘制内部矩形边框
-            Gizmos.DrawLine(topLeftInner, topRightInner);
-            Gizmos.DrawLine(topRightInner, bottomRightInner);
-            Gizmos.DrawLine(bottomRightInner, bottomLeftInner);
-            Gizmos.DrawLine(bottomLeftInner, topLeftInner);
-
-            Gizmos.color = previousColor;
         }
     }
 }
