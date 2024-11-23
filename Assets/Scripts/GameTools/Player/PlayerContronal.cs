@@ -7,7 +7,10 @@ namespace GameTools.MonoTool.Player
     {
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Destroy(gameObject);
+            if (other.transform.TryGetComponent<Abs_Tool>(out var t))
+            {
+                t.Touch(this);
+            }
         }
     }
 }

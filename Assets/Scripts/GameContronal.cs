@@ -57,14 +57,7 @@ public class GameContronal : MonoBehaviour
         {
             foreach (var p in _tools)
             {
-                if (p.transform.position.y < 0)
-                {
-                    p.transform.position = new Vector3(p.transform.position.x, 5, p.transform.position.z);
-                }
-                else
-                {
-                    p.transform.position = new Vector3(p.transform.position.x, -1, p.transform.position.z);
-                }
+                p.Trigger();
             }
         }));
         _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore,(() =>
