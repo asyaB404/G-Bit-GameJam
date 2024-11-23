@@ -16,7 +16,25 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 72d89257b1023d04fb52b8bacf682f9e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 8451c51eb3dd86043aa92af38a7955e1
+    m_Address: Assets/AddressableAssets/Prefabs/Canvas.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 465f4fb4ff812824d94c756527f5c4d0
+    m_Address: Assets/AddressableAssets/Prefabs/Cell.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba53e8473a2068f43b48736e1d896f06
+    m_Address: Assets/AddressableAssets/Prefabs/Queue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bbf2907e4dec5d241bd97c8d2a7c536b, type: 2}
   m_SchemaSet:
