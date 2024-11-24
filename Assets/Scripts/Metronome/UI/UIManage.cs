@@ -64,7 +64,6 @@ public class UIManage:IMetronomUI
 
    public void RemoveCell(ITimbre timbre,MCell cell)
    {
-//      Debug.LogWarning("删除"+cell.ID + timbre.GetHashCode());
       var button = _timbres[timbre].transform;
       button.GetChild(button.childCount-1).GetComponent<Button>().onClick.RemoveAllListeners();
       Object.Destroy(button.GetChild(button.childCount-1).gameObject);
