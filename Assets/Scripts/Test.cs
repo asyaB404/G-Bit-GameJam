@@ -18,7 +18,7 @@ public class Test : MonoBehaviour
 
     private int BPM = 60;
     
-    private async void Start()
+    private void Start()
     {
        var a = new Timbre_Common(audioClip_2);
        var b = new Timbre_Common(audioClip_0);

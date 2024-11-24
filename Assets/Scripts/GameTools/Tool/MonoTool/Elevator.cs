@@ -31,34 +31,31 @@ namespace GameTools.MonoTool
 
         public override void StartTouch(PlayerContronal player)
         {
+            player.transform.SetParent(transform);
         }
 
         public override void EndTouch(PlayerContronal player)
         {
-            
+            player.transform.SetParent(null);
         }
 
         public override void Trigger()
         {
+            var position = transform.position;
             // 确保 step 在 [0, maxStep-1] 内循环
             step = (step + 1) % maxStep;
-
-            // 计算目标高度
-            float targetY;
             if (step <= maxStep / 2f)
             {
                 // 前半部分上升
-                targetY = _initialY + (height / (maxStep / 2f)) * step;
+                position.y = _initialY + (height / (maxStep / 2f)) * step;
             }
             else
             {
                 // 后半部分下降
-                targetY = _initialY + height - (height / (maxStep / 2f)) * (step - maxStep / 2f);
+                position.y = _initialY + height - (height / (maxStep / 2f)) * (step - maxStep / 2f);
             }
 
-           // transform.position = transform.position + new Vector3(0,targetY,0);
-            // 使用 DOTween 平滑移动
-            transform.DOMoveY(targetY, 60f / GameContronal.Instance.Bpm).SetEase(Ease.InOutQuad);
+            transform.position = position;
         }
     }
 }
