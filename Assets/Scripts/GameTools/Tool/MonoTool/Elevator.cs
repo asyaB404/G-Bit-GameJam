@@ -29,8 +29,13 @@ namespace GameTools.MonoTool
             _initialY = transform.position.y;
         }
 
-        public override void Touch(PlayerContronal player)
+        public override void StartTouch(PlayerContronal player)
         {
+        }
+
+        public override void EndTouch(PlayerContronal player)
+        {
+            
         }
 
         public override void Trigger()
@@ -51,6 +56,7 @@ namespace GameTools.MonoTool
                 targetY = _initialY + height - (height / (maxStep / 2f)) * (step - maxStep / 2f);
             }
 
+           // transform.position = transform.position + new Vector3(0,targetY,0);
             // 使用 DOTween 平滑移动
             transform.DOMoveY(targetY, 60f / GameContronal.Instance.Bpm).SetEase(Ease.InOutQuad);
         }

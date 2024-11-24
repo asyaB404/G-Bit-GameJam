@@ -4,6 +4,7 @@ namespace GameTools.MonoTool
 {
     public interface ICanTouch
     {
-        void Touch(PlayerContronal player);
+        void StartTouch(PlayerContronal player);
+        void EndTouch(PlayerContronal player);
     }
 }

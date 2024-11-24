@@ -6,13 +6,18 @@ using UnityEngine;
 
 public class P_2 : Abs_Tool
 {
-    public override void Touch(PlayerContronal player)
+    public override void StartTouch(PlayerContronal player)
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void EndTouch(PlayerContronal player)
+    {
+        throw new System.NotImplementedException();
     }
 
     public override void Trigger()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

@@ -6,9 +6,15 @@ namespace GameTools.MonoTool
     public class Platform:Abs_Tool
     {
         private bool _isopen;
-        public override void Touch(PlayerContronal player)
+        public override void StartTouch(PlayerContronal player)
         {
             Destroy(player.gameObject);
+        }
+        
+
+        public override void EndTouch(PlayerContronal player)
+        {
+            throw new System.NotImplementedException();
         }
 
         public override void Trigger()

@@ -12,7 +12,15 @@ namespace GameTools.MonoTool.Player
         {
             if (other.transform.TryGetComponent<Abs_Tool>(out var t))
             {
-                t.Touch(this);
+                t.StartTouch(this);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.transform.TryGetComponent<Abs_Tool>(out var t))
+            {
+                t.EndTouch(this);
             }
         }
     }
