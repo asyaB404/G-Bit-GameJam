@@ -19,6 +19,7 @@ namespace GameTools.MonoTool
 
         public override void Touch(PlayerContronal player)
         {
+            Debug.LogWarning("ww");
             GameContronal.Instance.Bpm *= (int)changeBpmMul;
             GameContronal.Instance.PlayManage.Stop();
             GameContronal.Instance.PlayManage.Play(GameContronal.Instance.Bpm);

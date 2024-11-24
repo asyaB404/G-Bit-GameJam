@@ -5,6 +5,7 @@ namespace GameTools.MonoTool
 {
     public class Platform:Abs_Tool
     {
+        private bool _isopen;
         public override void Touch(PlayerContronal player)
         {
             Destroy(player.gameObject);
@@ -12,14 +13,15 @@ namespace GameTools.MonoTool
 
         public override void Trigger()
         {
-            if (transform.position.y < 0)
+            if (!_isopen)
             {
-                transform.position = new Vector3(transform.position .x,5,transform.position.z);
+                transform.position = new Vector3(transform.position .x,transform.position.y+5,transform.position.z);
             }
             else
             {
-                transform.position = new Vector3(transform.position .x,-1,transform.position.z);
+                transform.position = new Vector3(transform.position .x,transform.position.y-5,transform.position.z);
             }
+            _isopen = !_isopen;
         }
     }
 }

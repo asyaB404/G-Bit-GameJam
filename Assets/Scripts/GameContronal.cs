@@ -15,23 +15,28 @@ public class GameContronal : MonoBehaviour
     private PlayManage _playManage;
     public PlayManage PlayManage => _playManage;
 
-    private GameObject _player;
-    public GameObject Player => _player;
-
+    //人物控制器
+    private PlayerContronal _player;
+    public PlayerContronal Player => _player;
+    
+    
+    //BPM数值
     [SerializeField, Header("BPM数值")] private int BPM;
-
+    
+    //音色列表
     [Header("音色的列表")] public List<Timbre_SO> audioChilps;
 
     //音色实例
     private List<Timbre_Common> _timbre = new List<Timbre_Common>();
 
+    //场景中的工具
     private List<Abs_Tool> _tools;
 
     void Awake()
     {
         //控制器
         _playManage = new PlayManage();
-        _player = GameObject.FindObjectOfType<PlayerContronal>().gameObject;
+        _player = FindObjectOfType<PlayerContronal>();
 
         //实例化音色
         foreach (var V in audioChilps)
@@ -57,7 +62,7 @@ public class GameContronal : MonoBehaviour
         _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore,
             (() =>
             {
-                Player.transform.position = new Vector3(_player.transform.position.x + 1.25f,
+                Player.transform.position = new Vector3(_player.transform.position.x + _player.Speed,
                     _player.transform.position.y, _player.transform.position.z);
             }));
 
