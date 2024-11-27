@@ -30,6 +30,8 @@ public class GameContronal : MonoBehaviour
     //BPM数值
     [SerializeField, Header("BPM数值")] 
     private int BPM;
+
+    [SerializeField] private float offset;
     
     [Header("鼓点器格子数"),SerializeField]
     private int CellNum =  8;
