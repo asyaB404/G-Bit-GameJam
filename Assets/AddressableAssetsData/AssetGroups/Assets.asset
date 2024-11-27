@@ -15,28 +15,10 @@ MonoBehaviour:
   m_GroupName: Assets
   m_Data:
     m_SerializedData: []
-  m_GUID: a2f4d305f242f104f8ebe3832828e749
+  m_GUID: d12a035625d3dd74c86bd7974d520238
   m_SerializeEntries:
-  - m_GUID: b9c4dbe25a8474947ba395b54592e38f
-    m_Address: Assets/hat.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Assets
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 229de8dd664ef5044ab0ecbf479cbf52
-    m_Address: Assets/kick.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Assets
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93b439a37f63240aca3dd4e01d978a9f
     m_Address: Assets/UniversalRenderPipelineGlobalSettings.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Assets
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8aba603c99be4ca4fb1196b8a4167cce
-    m_Address: "Assets/\u83CC\u83C7.mp3"
     m_ReadOnly: 0
     m_SerializedLabels:
     - Assets

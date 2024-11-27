@@ -1,17 +1,24 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using System.Linq;
 using GameTools.MonoTool;
 using GameTools.MonoTool.Player;
 using Metronome.timbre;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameContronal : MonoBehaviour
 {
+    #region 测试使用
+
     [Header("开始")] public Button StartB;
 
+    [Header("音乐")]
+    public AudioClip Music;
+
+    #endregion
+    
     private PlayManage _playManage;
     public PlayManage PlayManage => _playManage;
 
@@ -21,55 +28,74 @@ public class GameContronal : MonoBehaviour
     
     
     //BPM数值
-    [SerializeField, Header("BPM数值")] private int BPM;
+    [SerializeField, Header("BPM数值")] 
+    private int BPM;
     
-    //音色列表
-    [Header("音色的列表")] public List<Timbre_SO> audioChilps;
-
+    [Header("鼓点器格子数"),SerializeField]
+    private int CellNum =  8;
+    
     //音色实例
-    private List<Timbre_Common> _timbre = new List<Timbre_Common>();
+    private readonly List<Timbre_Common> _timbre = new List<Timbre_Common>();
 
     //场景中的工具
     private List<Abs_Tool> _tools;
-
+    
     void Awake()
     {
         //控制器
         _playManage = new PlayManage();
         _player = FindObjectOfType<PlayerContronal>();
-
-        //实例化音色
-        foreach (var V in audioChilps)
-        {
-            _timbre.Add(new Timbre_Common(V));
-        }
+        
+        //添加格子
+        _playManage.AddCell(CellNum);
 
         //找到场景中工具(平台)
         _tools = GameObject.FindObjectsOfType<Abs_Tool>().ToList();
-        Debug.Log(_tools.Count);
-    }
-
-    private void Start()
-    {
-        StartB.onClick.AddListener((() => { _playManage.Play(BPM); }));
-        _timbre[0].EventManager.AddListener(TimbreEvent.AfterHit, (() =>
-        {
-            foreach (var p in _tools)
-            {
-                p.Trigger();
-            }
-        }));
+        
+        //添加人物移动的事件
         _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore,
             (() =>
             {
                 Player.transform.position = new Vector3(_player.transform.position.x + _player.Speed,
                     _player.transform.position.y, _player.transform.position.z);
             }));
-
-
-        _playManage.AddTimbre(_timbre[0]);
-        _playManage.AddCell(8);
     }
+
+    /// <summary>
+    /// 添加音色和绑定的工具
+    /// </summary>
+    /// <param name="t">音色</param>
+    /// <typeparam name="T">工具种类</typeparam>
+    public void AddTimbre<T>(Timbre_Common t) where T:Abs_Tool
+    {
+        foreach (var to in _tools)
+        {
+            if (to is T)
+            {
+                t.EventManager.AddListener(TimbreEvent.AfterHit,to.Trigger);
+            }
+        }
+
+        if (!_timbre.Contains(t))
+        {
+            _timbre.Add(t);
+            _playManage.AddTimbre(t);
+            Debug.Log("成功添加音色和绑定工具"+t);
+            return;
+        }
+        Debug.Log("之前已添加音色只增加绑定工具");
+    }
+
+    private void Start()
+    {
+        StartB.onClick.AddListener((() =>
+        {
+            _playManage.Play(BPM);
+            AudioManager.Instance.PlaySound(Music);
+        }));
+    }
+
+   
 
     #region basya
 

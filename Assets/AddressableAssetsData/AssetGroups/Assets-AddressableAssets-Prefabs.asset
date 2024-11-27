@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Assets-AddressableAssets-Prefabs
   m_Data:
     m_SerializedData: []
-  m_GUID: 72d89257b1023d04fb52b8bacf682f9e
+  m_GUID: cabd867cc80e22444aae7353efbb8a59
   m_SerializeEntries:
   - m_GUID: 8451c51eb3dd86043aa92af38a7955e1
     m_Address: Assets/AddressableAssets/Prefabs/Canvas.prefab
@@ -31,6 +31,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ba53e8473a2068f43b48736e1d896f06
     m_Address: Assets/AddressableAssets/Prefabs/Queue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Assets-AddressableAssets-Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c98df06145f38e4b9eb80c36c58c906
+    m_Address: Assets/AddressableAssets/Prefabs/Root.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Assets-AddressableAssets-Prefabs

@@ -17,7 +17,7 @@ public class UIManage:IMetronomUI
    }
    public void Init()
    {
-      Main =  GameObject.Instantiate(AssetMgr.LoadAssetSync<GameObject>("Assets/AddressableAssets/Prefabs/Canvas.prefab")).transform.GetChild(0).gameObject;
+      Main =  GameObject.Instantiate(AssetMgr.LoadAssetSync<GameObject>("Assets/AddressableAssets/Prefabs/Root.prefab")).transform.GetChild(0).GetChild(0).gameObject;
    }
 
    public void AddTimbre(ITimbre timbre)

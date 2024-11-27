@@ -5,6 +5,7 @@ namespace GameTools.MonoTool
 {
     public class Platform:Abs_Tool
     {
+        [SerializeField,Header("门是否打开")]
         private bool _isopen;
         public override void StartTouch(PlayerContronal player)
         {

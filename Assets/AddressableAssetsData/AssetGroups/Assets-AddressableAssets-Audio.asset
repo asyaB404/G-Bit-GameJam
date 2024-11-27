@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Assets-AddressableAssets-Audio
   m_Data:
     m_SerializedData: []
-  m_GUID: b131d0eaf2b291a40b5923e6fa17c615
+  m_GUID: 8910e8d2f8445234c97dcba953006be6
   m_SerializeEntries:
   - m_GUID: d142e220d6c94594c8bfaf7cda452861
     m_Address: Assets/AddressableAssets/Audio/mika.mp3

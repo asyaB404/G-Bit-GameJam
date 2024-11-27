@@ -557,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &769776402
 Transform:
   m_ObjectHideFlags: 0
@@ -2039,9 +2039,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartB: {fileID: 419830562}
-  BPM: 140
+  Music: {fileID: 8300000, guid: bd9f8a697f428ce418900040e6f19418, type: 3}
+  BPM: 75
   audioChilps:
-  - {fileID: 11400000, guid: 76879e89cf1e76043877acee2aa7aefc, type: 2}
+  - {fileID: 11400000, guid: 65f6c8b893912f54da53016456f297a7, type: 2}
   - {fileID: 11400000, guid: c4453b99bde27794094eb49d80538ce4, type: 2}
   - {fileID: 11400000, guid: bf261f402426fe54789fa7a65b1d7af4, type: 2}
 --- !u!1 &2024292364
