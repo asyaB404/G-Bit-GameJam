@@ -9,7 +9,7 @@ public class BpmTest : MonoBehaviour
     [FormerlySerializedAs("source")] [SerializeField]
     private AudioSource tick;
 
-    [SerializeField] private float bpm;
+    [SerializeField] private double bpm;
     [SerializeField] private int musicOffset;
 
     private bool _playing;
@@ -31,7 +31,6 @@ public class BpmTest : MonoBehaviour
 
     private async UniTask RepeatTask()
     {
-        float step = 60 / bpm;
         tick.pitch = 1f;
         await UniTask.Delay(musicOffset);
         while (_playing)
@@ -39,7 +38,7 @@ public class BpmTest : MonoBehaviour
             tick.Play();
             tick.pitch += 1 / 3f;
             if (tick.pitch > 2f) tick.pitch = 1;
-            await UniTask.WaitForSeconds(step);
+            await UniTask.Delay(System.TimeSpan.FromSeconds(60 / bpm));
         }
     }
 }
