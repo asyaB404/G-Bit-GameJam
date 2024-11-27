@@ -310,8 +310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 721081255}
   tick: {fileID: 721081254}
-  bpm: 75
-  musicOffset: 15
+  bpm: 216
+  musicOffset: 1035
 --- !u!4 &721081253
 Transform:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2901cc469384bb048ac6f3d4a82b978f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1b6980f9282467c4ba82e2cf7accb2d4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
