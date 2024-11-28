@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform_UpDown
       objectReference: {fileID: 0}
+    - target: {fileID: 3622672607869078075, guid: e1f359a4a283e964abd9d1d0420c2de8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9010159870875374487, guid: e1f359a4a283e964abd9d1d0420c2de8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15

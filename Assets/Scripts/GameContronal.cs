@@ -1,10 +1,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using GameTools.MonoTool;
 using GameTools.MonoTool.Player;
 using Metronome.timbre;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +30,8 @@ public class GameContronal : MonoBehaviour
     //BPM数值
     [SerializeField, Header("BPM数值")] 
     private int BPM;
+
+    [SerializeField] private float offset;
     
     [Header("鼓点器格子数"),SerializeField]
     private int CellNum =  8;
@@ -90,9 +92,15 @@ public class GameContronal : MonoBehaviour
     {
         StartB.onClick.AddListener((() =>
         {
-            _playManage.Play(BPM);
-            AudioManager.Instance.PlaySound(Music);
+            play();
         }));
+    }
+
+    async void play()
+    {
+        await UniTask.WaitForSeconds(1);
+        var a = AudioManager.Instance.PlaySound(Music);
+        StartCoroutine(_playManage.Play(BPM,a));
     }
 
    

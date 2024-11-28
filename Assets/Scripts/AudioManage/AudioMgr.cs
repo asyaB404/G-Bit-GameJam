@@ -40,12 +40,12 @@ public class AudioManager
     /// </summary>
     /// <param name="clip">要播放的音频片段</param>
     /// <param name="volume">音量大小（0.0 - 1.0）</param>
-    public void PlaySound(AudioClip clip, float volume = 1.0f)
+    public AudioSource PlaySound(AudioClip clip, float volume = 1.0f)
     {
         if (clip == null)
         {
             Debug.LogWarning("尝试播放的音效为空！");
-            return;
+            return null;
         }
 
         AudioSource audioSource = GetAvailableAudioSource();
@@ -58,6 +58,8 @@ public class AudioManager
 
         //在音效播放完成后回收
         RecycleAudioSourceAsync(audioSource).Forget();
+
+        return audioSource;
     }
 
     #region Private
