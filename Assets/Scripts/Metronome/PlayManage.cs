@@ -1,8 +1,10 @@
-using System;
-using Cysharp.Threading.Tasks;
+using System.Collections;
+using System.Diagnostics;
 using Metronome;
 using Metronome.timbre;
+using Unity.VisualScripting;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class PlayManage 
 {
@@ -52,18 +54,19 @@ public class PlayManage
     /// </summary>
     /// <param name="bpm">BPM</param>
     
-    public async void Play(int bpm)
+    public IEnumerator Play(int bpm,AudioSource s)
     {
         //如果游戏已经开始返回
         if (_isplaying)
         {
             Debug.LogWarning("Already playing");
-            return;
+            //return;
+            yield break;
         }
         
         //开始游戏
         _isplaying = true;
-        float timestep = 60f / bpm;
+        double timestep = ((60d / bpm));
         //执行游戏开始等等全局事件
         _eventManager.Dispatch(PlayEvent.OnStartPlay);
         
@@ -72,7 +75,9 @@ public class PlayManage
         {
             V.Key.EventManager.Dispatch(TimbreEvent.BeginPlay);
         }
-        
+
+        var _timer = timestep;
+
         while (true)
         {
             if (!_isplaying)
@@ -86,20 +91,29 @@ public class PlayManage
                 //执行游戏暂停的事件
                 _eventManager.Dispatch(PlayEvent.OnPausePlay);
                 
-                await UniTask.WaitUntil(() => !_ispaused);
+                //await UniTask.WaitUntil(() => !_ispaused);
+                yield return new WaitUntil(() => !_ispaused);
                 
                 //执行游戏进行的事件
                 _eventManager.Dispatch(PlayEvent.OnContinuePlay);
             }
-            await UniTask.WaitForSeconds(timestep);
+
+            if (s.isPlaying&&s.time>= _timer)
+            {
+                //执行游戏本节拍前的事件
+                _eventManager.Dispatch(PlayEvent.OnHitsBefore);
             
-            //执行游戏本节拍前的事件
-            _eventManager.Dispatch(PlayEvent.OnHitsBefore);
+                _controller.PlayNext();
             
-            _controller.PlayNext();
-            
-            //执行游戏本节拍后的事件
-            _eventManager.Dispatch(PlayEvent.OnHitsAfter);
+                //执行游戏本节拍后的事件
+                _eventManager.Dispatch(PlayEvent.OnHitsAfter);
+
+                _timer += timestep;
+            }
+
+            yield return new WaitForNextFrameUnit();
+            //await UniTask.DelayFrame(0);
+            // await UniTask.Delay((int)(timestep * 1000));
         }
         
         //所有音色结束的事件
