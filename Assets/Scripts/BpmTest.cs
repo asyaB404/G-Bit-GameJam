@@ -9,7 +9,7 @@ public class BpmTest : MonoBehaviour
     [FormerlySerializedAs("source")] [SerializeField]
     private AudioSource tick;
 
-    [SerializeField] private float bpm;
+    [SerializeField] private double bpm;
     [SerializeField] private int musicOffset;
 
     private bool _playing;
