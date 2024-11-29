@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameTools.MonoTool.Player
 {
-    public class PlayerContronal : AbsBaseUpdateOnBeat
+    public class PlayerContronal : MonoBehaviour, IUpdateOnBeat
     {
         private float _speed = 1.25f;
         public float Speed => _speed;
@@ -30,7 +30,7 @@ namespace GameTools.MonoTool.Player
             }
         }
 
-        public override void UpdateOnBeat()
+        public void UpdateOnBeat()
         {
             transform.position = new Vector3(transform.position.x + Speed,
                 transform.position.y, transform.position.z);

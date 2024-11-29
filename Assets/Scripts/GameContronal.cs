@@ -51,20 +51,10 @@ public class GameContronal : MonoBehaviour
         //找到场景中工具(平台)
         _tools = FindObjectsOfType<Abs_Tool>();
         _updateOnBeats = FindObjectsOfType<AbsBaseUpdateOnBeat>();
-        
-        _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore, () =>
+        foreach (var item in _updateOnBeats)
         {
-            foreach (var item in _updateOnBeats)
-            {
-                item.UpdateOnBeat();
-            }
-        });
-        
-    }
-    
-    private void Start()
-    {
-        StartB.onClick.AddListener((() => { play();}));
+            _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore, item.UpdateOnBeat);
+        }
     }
 
     /// <summary>
@@ -93,7 +83,10 @@ public class GameContronal : MonoBehaviour
         Debug.Log("之前已添加音色只增加绑定工具");
     }
 
-   
+    private void Start()
+    {
+        StartB.onClick.AddListener((() => { play(); }));
+    }
 
     async void play()
     {
