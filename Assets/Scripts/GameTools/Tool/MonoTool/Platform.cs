@@ -9,7 +9,7 @@ namespace GameTools.MonoTool
         private bool _isopen;
         public override void StartTouch(PlayerContronal player)
         {
-            Destroy(player.gameObject);
+            player.Die();
         }
         
 
