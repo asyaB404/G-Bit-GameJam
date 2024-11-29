@@ -58,8 +58,9 @@ public class GameContronal : MonoBehaviour
         _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore,
             (() =>
             {
-                Player.transform.position = new Vector3(_player.transform.position.x + _player.Speed,
-                    _player.transform.position.y, _player.transform.position.z);
+                // Player.transform.position = new Vector3(_player.transform.position.x + _player.Speed, 
+                //     _player.transform.position.y, _player.transform.position.z);
+                _player.Trigger();
             }));
     }
 
@@ -98,7 +99,7 @@ public class GameContronal : MonoBehaviour
 
     async void play()
     {
-        await UniTask.WaitForSeconds(1);
+        await UniTask.WaitForSeconds(0.2f);
         var a = AudioManager.Instance.PlaySound(Music);
         StartCoroutine(_playManage.Play(BPM,a));
     }
