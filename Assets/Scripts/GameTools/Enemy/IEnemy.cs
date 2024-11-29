@@ -7,13 +7,14 @@
 // //   (___)___)                         @Copyright  Copyright (c) 2024, Basya
 // // ********************************************************************************************
 
-using UnityEngine;
+using GameTools.MonoTool.Player;
 
 namespace GameTools.Enemy
 {
     public interface IEnemy
     {
+        void StartTouch(PlayerContronal player);
+        void EndTouch(PlayerContronal player);
         void TakeDamage();
-        void Die();
     }
 }

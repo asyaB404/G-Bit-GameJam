@@ -1,9 +1,10 @@
 ﻿using System;
+using GameTools.Enemy;
 using UnityEngine;
 
 namespace GameTools.MonoTool.Player
 {
-    public class PlayerContronal : MonoBehaviour, IUpdateOnBeat
+    public class PlayerContronal : AbsBaseUpdateOnBeat
     {
         private float _speed = 1.25f;
         public float Speed => _speed;
@@ -20,6 +21,10 @@ namespace GameTools.MonoTool.Player
             {
                 t.StartTouch(this);
             }
+            if (other.transform.TryGetComponent<IEnemy>(out var tEnemy))
+            {
+                tEnemy.StartTouch(this);
+            }
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -28,9 +33,13 @@ namespace GameTools.MonoTool.Player
             {
                 t.EndTouch(this);
             }
+            if (other.transform.TryGetComponent<IEnemy>(out var tEnemy))
+            {
+                tEnemy.EndTouch(this);
+            }
         }
 
-        public void UpdateOnBeat()
+        public override void UpdateOnBeat()
         {
             transform.position = new Vector3(transform.position.x + Speed,
                 transform.position.y, transform.position.z);
@@ -44,6 +53,11 @@ namespace GameTools.MonoTool.Player
             _imageid = (++_imageid) % 2;
             GetComponent<SpriteRenderer>().sprite = s;
             Debug.Log(s);
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }
