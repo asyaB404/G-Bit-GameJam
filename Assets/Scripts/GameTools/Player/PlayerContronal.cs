@@ -38,7 +38,8 @@ namespace GameTools.MonoTool.Player
             var s = _imageid switch
             {
                 0 => _first,
-                1 => _second
+                1 => _second,
+                _ => throw new ArgumentOutOfRangeException()
             };
             _imageid = (++_imageid) % 2;
             GetComponent<SpriteRenderer>().sprite = s;
