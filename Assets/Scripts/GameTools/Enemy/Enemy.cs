@@ -7,6 +7,7 @@
 // //   (___)___)                         @Copyright  Copyright (c) 2024, Basya
 // // ********************************************************************************************
 
+#nullable enable
 using GameTools.MonoTool;
 using GameTools.MonoTool.Player;
 using UnityEngine;
@@ -54,19 +55,24 @@ namespace GameTools.Enemy
 
         public void Die()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
         public override void UpdateOnBeat()
         {
-            if (gameObject == null) return;
+            if (gameObject == null)
+            {
+                return;
+            }
+               
             // 计算目标位置
             var targetPosition = _movingToTarget ? _currentTarget : _startPosition;
             // 确定每次移动的方向
             var direction = _movingToTarget
                 ? (moveToLeft ? Vector3.left : Vector3.right)
                 : (moveToLeft ? Vector3.right : Vector3.left);
-            transform.Translate(direction, Space.World); // 在世界空间中按方向移动
+            transform.Translate(direction*1.25f, Space.World); // 在世界空间中按方向移动
             // 检查是否到达目标点并切换方向
             if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
             {

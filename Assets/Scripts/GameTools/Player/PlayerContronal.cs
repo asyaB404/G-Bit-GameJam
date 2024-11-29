@@ -1,5 +1,6 @@
 ﻿using System;
 using GameTools.Enemy;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GameTools.MonoTool.Player
@@ -14,6 +15,17 @@ namespace GameTools.MonoTool.Player
         public Sprite _second;
 
         private int _imageid = 0;
+
+        // private void FixedUpdate()
+        // {
+        //     var p = transform.position;
+        //     var a = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
+        //     Debug.DrawLine(p+Vector3.left*0.2f, p+Vector3.left*0.2f+(Vector3)(Vector2.down*0.5f), Color.blue);
+        //     if (a.collider==null)
+        //     {
+        //         Die();
+        //     }
+        // }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -52,7 +64,6 @@ namespace GameTools.MonoTool.Player
             };
             _imageid = (++_imageid) % 2;
             GetComponent<SpriteRenderer>().sprite = s;
-            Debug.Log(s);
         }
 
         public void Die()

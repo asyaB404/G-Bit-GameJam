@@ -17,6 +17,8 @@ public class GameContronal : MonoBehaviour
 
     #endregion
 
+    public GameObject g;
+    
     private PlayManage _playManage;
     public PlayManage PlayManage => _playManage;
 
@@ -39,6 +41,9 @@ public class GameContronal : MonoBehaviour
     private Abs_Tool[] _tools;
     private IUpdateOnBeat[] _updateOnBeats;
 
+    private int _newtimbre = 0;
+    private List<Transform> sprite = new List<Transform>();
+
     void Awake()
     {
         //控制器
@@ -55,6 +60,7 @@ public class GameContronal : MonoBehaviour
         {
             _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore, item.UpdateOnBeat);
         }
+        _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore, AAA);
     }
 
     /// <summary>
@@ -68,7 +74,7 @@ public class GameContronal : MonoBehaviour
         {
             if (to is T)
             {
-                t.EventManager.AddListener(TimbreEvent.AfterHit, to.Trigger);
+                t.EventManager.AddListener(TimbreEvent.BegainHit, to.Trigger);
             }
         }
 
@@ -93,6 +99,33 @@ public class GameContronal : MonoBehaviour
         await UniTask.WaitForSeconds(0.2f);
         var a = AudioManager.Instance.PlaySound(Music);
         StartCoroutine(_playManage.Play(BPM, a));
+        
+        
+        
+        var p = _playManage.UIManage.Main.transform;
+        var c = _playManage.UIManage.Main.transform.parent;
+        for (int i = 0; i < p.childCount; i++)
+        {
+            sprite.Add(Instantiate(g, c).transform);
+        }
+        for (int i = 0; i < p.childCount; i++)
+        {
+            sprite[i].position = p.GetChild(i).GetChild(_newtimbre).transform.position;
+        }
+        
+        
+    }
+
+    void AAA()
+    {
+        var p = _playManage.UIManage.Main.transform;
+        for (int i = 0; i < p.childCount; i++)
+        {
+            sprite[i].position = p.GetChild(i).GetChild(_newtimbre).transform.position;
+        }
+
+        _newtimbre = (_newtimbre + 1) % CellNum;
+//        Debug.Log(_newtimbre + "WWWWWWWWWWWWWWWWWWWWWWWWWWWW");
     }
 
 

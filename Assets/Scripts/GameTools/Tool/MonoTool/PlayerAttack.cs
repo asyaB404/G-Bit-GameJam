@@ -7,6 +7,7 @@
 // //   (___)___)                         @Copyright  Copyright (c) 2024, Basya
 // // ********************************************************************************************
 
+using Cysharp.Threading.Tasks;
 using GameTools.Enemy;
 using GameTools.MonoTool.Player;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace GameTools.MonoTool
         [SerializeField] private float rayLength = 1.5f; // 射线长度
         [SerializeField] private LayerMask enemyLayer; // 指定敌人所在的层
 
+        public GameObject ggg;
         public override void StartTouch(PlayerContronal player)
         {
         }
@@ -29,10 +31,12 @@ namespace GameTools.MonoTool
 
         public override void Trigger()
         {
+            CreatMusicF();
             // 获取玩家的位置
             Vector2 origin = transform.position + this.origin;
             // 射线方向（X 轴正方向）
             Vector2 direction = Vector2.right;
+            
             // 进行射线检测
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, rayLength, enemyLayer);
             if (hit.collider != null)
@@ -48,6 +52,14 @@ namespace GameTools.MonoTool
             // 可视化射线（调试用）
             _lastRayOrigin = origin;
             _lastRayDirection = direction;
+        }
+
+        async void CreatMusicF()
+        {
+            var g = Instantiate(ggg);
+            g.transform.position = transform.position + Vector3.right * 1.25f +Vector3.up*2;
+            await UniTask.WaitForSeconds(0.4f);
+            Destroy(g);
         }
 
         #region DeBug

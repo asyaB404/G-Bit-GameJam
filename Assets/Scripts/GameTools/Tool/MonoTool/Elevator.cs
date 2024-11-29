@@ -16,18 +16,13 @@ namespace GameTools.MonoTool
 {
     public class Elevator : Abs_Tool
     {
-        [SerializeField] private float height;
+        private float height = 5;
 
-        [FormerlySerializedAs("step")] [SerializeField]
+        
         private int maxStep = 4;
 
         [SerializeField] private int step = 0;
-        private float _initialY;
-
-        private void Awake()
-        {
-            _initialY = transform.position.y;
-        }
+       
 
         public override void StartTouch(PlayerContronal player)
         {
@@ -41,21 +36,20 @@ namespace GameTools.MonoTool
 
         public override void Trigger()
         {
-            var position = transform.position;
             // 确保 step 在 [0, maxStep-1] 内循环
-            step = (step + 1) % maxStep;
-            if (step <= maxStep / 2f)
+           // step = (step + 1) % maxStep;
+            if (step < maxStep / 2f)
             {
                 // 前半部分上升
-                position.y = _initialY + (height / (maxStep / 2f)) * step;
+                transform.position += Vector3.up*height;
             }
             else
             {
                 // 后半部分下降
-                position.y = _initialY + height - (height / (maxStep / 2f)) * (step - maxStep / 2f);
+                transform.position -= Vector3.up*height;
             }
 
-            transform.position = position;
+            step = (step + 1) % maxStep;
         }
     }
 }

@@ -42,7 +42,7 @@ public class MCell
         {
             timbre.EventManager.Dispatch(TimbreEvent.BegainHit);
             AudioManager.Instance.PlaySound(timbre.Clip);
-            Debug.Log("音色 "+timbre + "序号 " + ID);
+//            Debug.Log("音色 "+timbre + "序号 " + ID);
             timbre.EventManager.Dispatch(TimbreEvent.AfterHit);
         }
     }
