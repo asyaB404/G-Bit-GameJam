@@ -125,7 +125,6 @@ public class GameContronal : MonoBehaviour
         }
 
         _newtimbre = (_newtimbre + 1) % CellNum;
-//        Debug.Log(_newtimbre + "WWWWWWWWWWWWWWWWWWWWWWWWWWWW");
     }
 
 
