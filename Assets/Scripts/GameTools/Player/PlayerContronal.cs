@@ -2,6 +2,7 @@
 using GameTools.Enemy;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameTools.MonoTool.Player
 {
@@ -16,21 +17,21 @@ namespace GameTools.MonoTool.Player
 
         private int _imageid = 0;
 
-       float a = -0.3f;
-       float b = 0.2f;
-        private void Update()
-        {
-            var f =  Physics2D.OverlapCircle((Vector2)(transform.position-Vector3.down*a),b);
-            if (f == null)
-            {
-                Die();
-            }
-        }
+       // float a = -0.3f;
+       // float b = 0.2f;
+       //  private void Update()
+       //  {
+       //      var f =  Physics2D.OverlapCircle((Vector2)(transform.position-Vector3.down*a),b);
+       //      if (f == null)
+       //      {
+       //          Die();
+       //      }
+       //  }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawSphere((Vector2)(transform.position-Vector3.down*a),b);
-        }
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.DrawSphere((Vector2)(transform.position-Vector3.down*a),b);
+        // }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -73,6 +74,8 @@ namespace GameTools.MonoTool.Player
 
         public void Die()
         {
+            var a = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(a.buildIndex);
             Destroy(gameObject);
         }
     }

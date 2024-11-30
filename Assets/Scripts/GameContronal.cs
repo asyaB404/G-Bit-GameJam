@@ -97,8 +97,12 @@ public class GameContronal : MonoBehaviour
     async void play()
     {
         await UniTask.WaitForSeconds(0.2f);
-        var a = AudioManager.Instance.PlaySound(Music);
-        StartCoroutine(_playManage.Play(BPM, a));
+        AudioSource mainmusic = null;
+        if (Music != null)
+        {
+            mainmusic = AudioManager.Instance.PlaySound(Music);
+        }
+        StartCoroutine(_playManage.Play(BPM, mainmusic));
         
         
         

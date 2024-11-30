@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartB: {fileID: 419830562}
-  Music: {fileID: 8300000, guid: 2901cc469384bb048ac6f3d4a82b978f, type: 3}
+  Music: {fileID: 0}
   g: {fileID: 1132543592079503921, guid: a6a53837346607b4e9c96930642cedbe, type: 3}
   BPM: 75
   offset: 0
