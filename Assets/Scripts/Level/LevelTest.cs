@@ -13,8 +13,7 @@ using UnityEngine;
 
 namespace Level
 {
-    public class LevelTest:MonoBehaviour
-
+    public class LevelTest
     {
         public Timbre_SO so;
 
