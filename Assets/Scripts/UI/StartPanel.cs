@@ -19,11 +19,12 @@ namespace UI
     {
         [SerializeField] private Button[] btns;
         [SerializeField] private GameObject startAnim;
+        [SerializeField] private GameObject zuoze;
 
         private void Awake()
         {
             btns[0].onClick.AddListener(StartGame);
-            btns[1].onClick.AddListener(() => { }); //TODO:制作人员
+            btns[1].onClick.AddListener(() => { zuoze.gameObject.SetActive(true);}); 
             btns[2].onClick.AddListener(Application.Quit);
         }
 
