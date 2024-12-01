@@ -77,6 +77,8 @@ public class AudioManager
     /// </summary>
     public void Clear()
     {
+        _musicSource.clip = null;
+        _musicSource.Stop();
         //遍历所有活动的 AudioSource，停止播放并回收
         foreach (var audioSource in _activeAudioSources)
         {
