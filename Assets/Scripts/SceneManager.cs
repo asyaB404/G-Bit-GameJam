@@ -10,12 +10,14 @@ public static class SceneManager
 
     public static void NextLevel()
     {
+        AudioManager.Instance.Clear();
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(++Level);
     }
 
     public static void End()
     {
         Level = 0;
+        AudioManager.Instance.Clear();
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
     }
 
