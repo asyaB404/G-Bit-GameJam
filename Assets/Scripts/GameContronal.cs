@@ -100,7 +100,7 @@ public class GameContronal : MonoBehaviour
         AudioSource mainmusic = null;
         if (Music != null)
         {
-            mainmusic = AudioManager.Instance.PlaySound(Music);
+            mainmusic = AudioManager.Instance.PlayMusic(Music);
         }
         StartCoroutine(_playManage.Play(BPM, mainmusic));
         

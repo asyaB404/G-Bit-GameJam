@@ -10,7 +10,7 @@ public class AudioManager
     private readonly Stack<AudioSource> _audioSourcePool; // 用于存储闲置的 AudioSource
     private readonly List<AudioSource> _activeAudioSources; // 当前正在使用的 AudioSource 
     private readonly GameObject _soundManagerObject; // 用于挂载 AudioSource 的 GameObject
-
+    private AudioSource _musicSource; 
     private const int InitialPoolSize = 8; //初始池大小
 
     private AudioManager()
@@ -27,6 +27,9 @@ public class AudioManager
         {
             _audioSourcePool.Push(CreateNewAudioSource());
         }
+        
+        _musicSource = CreateNewAudioSource();
+        _musicSource.loop = true; // 背景音乐通常循环播放
     }
 
     public AudioManager(List<AudioSource> activeAudioSources)
@@ -61,6 +64,14 @@ public class AudioManager
         return audioSource;
     }
 
+    public AudioSource PlayMusic(AudioClip clip, float volume = 1.0f)
+    {
+        _musicSource.clip = clip;
+        _musicSource.volume = volume;
+        _musicSource.Play();
+        return _musicSource;
+    }
+    
     /// <summary>
     /// 清除所有当前播放的音效，停止并回收它们
     /// </summary>
@@ -96,9 +107,6 @@ public class AudioManager
     {
         // 等待音效播放完成
         await UniTask.WaitUntil(() => !audioSource.isPlaying);
-
-        // 重置 AudioSource 的状态
-        audioSource.clip = null;
 
         // 从活动列表中移除并将其回收到池中
         _activeAudioSources.Remove(audioSource);
