@@ -17,22 +17,6 @@ namespace GameTools.MonoTool.Player
 
         private int _imageid = 0;
 
-       // float a = -0.3f;
-       // float b = 0.2f;
-       //  private void Update()
-       //  {
-       //      var f =  Physics2D.OverlapCircle((Vector2)(transform.position-Vector3.down*a),b);
-       //      if (f == null)
-       //      {
-       //          Die();
-       //      }
-       //  }
-
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.DrawSphere((Vector2)(transform.position-Vector3.down*a),b);
-        // }
-
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.transform.TryGetComponent<Abs_Tool>(out var t))
