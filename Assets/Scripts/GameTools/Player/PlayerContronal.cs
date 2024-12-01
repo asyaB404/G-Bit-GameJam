@@ -58,6 +58,7 @@ namespace GameTools.MonoTool.Player
 
         public void Die()
         {
+            FindObjectOfType<GameContronal>().PlayManage.Stop();
             SceneManager.Reset();
             Destroy(gameObject);
         }
