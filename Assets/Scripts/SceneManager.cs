@@ -22,7 +22,7 @@ public static class SceneManager
     public static void Reset()
     {
         AudioManager.Instance.Clear();
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
     
     
