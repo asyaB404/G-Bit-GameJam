@@ -55,7 +55,7 @@ namespace GameTools.Enemy
 
         public void Die()
         {
-            Global.R();
+            SceneManager.Reset();
         }
 
         public override void UpdateOnBeat()

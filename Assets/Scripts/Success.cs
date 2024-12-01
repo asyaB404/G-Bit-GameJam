@@ -7,6 +7,6 @@ public class Success : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Global.NextLevel();
+        SceneManager.NextLevel();
     }
 }

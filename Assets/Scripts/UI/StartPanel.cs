@@ -31,7 +31,7 @@ namespace UI
         {
             startAnim.SetActive(true);
             await UniTask.WaitForSeconds(11.9f);
-            Global.NextLevel();
+            SceneManager.NextLevel();
         }
     }
 }

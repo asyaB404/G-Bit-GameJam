@@ -74,7 +74,7 @@ namespace GameTools.MonoTool.Player
 
         public void Die()
         {
-            Global.R();
+            SceneManager.Reset();
             Destroy(gameObject);
         }
     }
