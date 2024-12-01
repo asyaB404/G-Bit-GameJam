@@ -15,7 +15,7 @@ namespace GameTools.MonoTool
 
         public override void EndTouch(PlayerContronal player)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Trigger()

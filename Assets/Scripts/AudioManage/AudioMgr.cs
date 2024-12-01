@@ -33,8 +33,7 @@ public class AudioManager
     {
         _activeAudioSources = activeAudioSources;
     }
-
-    // 创建新的 AudioSource
+    
     /// <summary>
     /// 播放音效
     /// </summary>
@@ -62,6 +61,20 @@ public class AudioManager
         return audioSource;
     }
 
+    /// <summary>
+    /// 清除所有当前播放的音效，停止并回收它们
+    /// </summary>
+    public void Clear()
+    {
+        //遍历所有活动的 AudioSource，停止播放并回收
+        foreach (var audioSource in _activeAudioSources)
+        {
+            audioSource.Stop();  
+            audioSource.clip = null; 
+            _audioSourcePool.Push(audioSource); 
+        }
+        _activeAudioSources.Clear();
+    }
     #region Private
 
     private AudioSource CreateNewAudioSource()
