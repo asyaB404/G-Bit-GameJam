@@ -97,6 +97,7 @@ public class GameContronal : MonoBehaviour
     async void play()
     {
         await UniTask.WaitForSeconds(0.2f);
+        _playManage.UIManage.Main.transform.parent.GetChild(2).gameObject.SetActive(true);
         AudioSource mainmusic = null;
         if (Music != null)
         {
