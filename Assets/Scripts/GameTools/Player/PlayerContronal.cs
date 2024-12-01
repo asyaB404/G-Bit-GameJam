@@ -17,12 +17,15 @@ namespace GameTools.MonoTool.Player
 
         private int _imageid = 0;
 
+        private bool _isDie;
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.transform.TryGetComponent<Abs_Tool>(out var t))
             {
                 t.StartTouch(this);
             }
+
             if (other.transform.TryGetComponent<IEnemy>(out var tEnemy))
             {
                 tEnemy.StartTouch(this);
@@ -35,6 +38,7 @@ namespace GameTools.MonoTool.Player
             {
                 t.EndTouch(this);
             }
+
             if (other.transform.TryGetComponent<IEnemy>(out var tEnemy))
             {
                 tEnemy.EndTouch(this);
@@ -61,6 +65,7 @@ namespace GameTools.MonoTool.Player
             FindObjectOfType<GameContronal>().PlayManage.Stop();
             SceneManager.Reset();
             Destroy(gameObject);
+            _isDie = true;
         }
     }
 }

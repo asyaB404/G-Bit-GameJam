@@ -10,9 +10,11 @@ public class PlayerFallCheck2D : MonoBehaviour
     // 检测区域的中心偏移量
     public Vector2 boxOffset = new Vector2(0, -0.5f);
 
+    public bool isDie;
     public void Die()
     {
         player.Die();
+        isDie = true;
     }
 
     private void Update()
@@ -24,7 +26,7 @@ public class PlayerFallCheck2D : MonoBehaviour
     {
         Vector2 boxCenter = (Vector2)transform.position + boxOffset;
         Collider2D hit = Physics2D.OverlapBox(boxCenter, boxSize, 0f);
-        if (hit == null)
+        if (hit == null && !isDie)
         {
             Die();
         }
