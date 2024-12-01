@@ -24,7 +24,7 @@ namespace UI
         private void Awake()
         {
             btns[0].onClick.AddListener(StartGame);
-            btns[1].onClick.AddListener(() => { zuoze.gameObject.SetActive(true);}); 
+            btns[1].onClick.AddListener(() => { zuoze.SetActive(!zuoze.activeSelf);}); 
             btns[2].onClick.AddListener(Application.Quit);
         }
 

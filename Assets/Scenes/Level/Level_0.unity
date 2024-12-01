@@ -1509,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4609566181692394850, guid: 58b2614d4fb6a0848a620abc44a2f0c3, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7090905168233732235, guid: 58b2614d4fb6a0848a620abc44a2f0c3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
