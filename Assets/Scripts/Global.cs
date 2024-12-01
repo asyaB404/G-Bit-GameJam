@@ -15,6 +15,7 @@ public static class Global
 
     public static void R()
     {
+        AudioManager.Instance.Clear();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
     
