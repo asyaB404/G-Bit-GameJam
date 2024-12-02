@@ -1301,7 +1301,7 @@ MonoBehaviour:
   StartB: {fileID: 1786449132}
   Music: {fileID: 8300000, guid: 2901cc469384bb048ac6f3d4a82b978f, type: 3}
   g: {fileID: 1132543592079503921, guid: a6a53837346607b4e9c96930642cedbe, type: 3}
-  BPM: 75
+  BPM: 112.5
   offset: 20
   CellNum: 8
 --- !u!82 &2006375677

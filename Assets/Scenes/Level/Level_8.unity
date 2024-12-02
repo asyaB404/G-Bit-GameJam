@@ -1686,7 +1686,7 @@ MonoBehaviour:
   Music: {fileID: 8300000, guid: de144bf80e574f24e920d1e10150f851, type: 3}
   g: {fileID: 1132543592079503921, guid: a6a53837346607b4e9c96930642cedbe, type: 3}
   BPM: 140
-  offset: 0
+  offset: 20
   CellNum: 8
 --- !u!1 &2024292364
 GameObject:

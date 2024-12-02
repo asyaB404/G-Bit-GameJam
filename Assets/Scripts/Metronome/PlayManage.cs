@@ -68,7 +68,6 @@ public class PlayManage
 
         //开始游戏
         _isplaying = true;
-        double timeStep = 60d / bpm;
         //执行游戏开始等等全局事件
         _eventManager.Dispatch(PlayEvent.OnStartPlay);
 
@@ -78,7 +77,7 @@ public class PlayManage
             V.Key.EventManager.Dispatch(TimbreEvent.BeginPlay);
         }
 
-        var _timer = timeStep;
+        var _timer = 60d / GameContronal.Instance.Bpm;
 
         while (true)
         {
@@ -94,7 +93,6 @@ public class PlayManage
                 //执行游戏暂停的事件
                 _eventManager.Dispatch(PlayEvent.OnPausePlay);
                 yield return new WaitUntil(() => !_ispaused);
-                timeStep = 60d / GameContronal.Instance.Bpm;
                 _eventManager.Dispatch(PlayEvent.OnContinuePlay);
             }
 
@@ -108,7 +106,7 @@ public class PlayManage
                 //执行游戏本节拍后的事件
                 _eventManager.Dispatch(PlayEvent.OnHitsAfter);
 
-                _timer += timeStep;
+                _timer += 60d / GameContronal.Instance.Bpm;
             }
 
             yield return new WaitForNextFrameUnit();

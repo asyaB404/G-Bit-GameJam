@@ -54,7 +54,7 @@ namespace GameTools.MonoTool
             _lastRayDirection = direction;
         }
 
-        async void CreatMusicF()
+        private async void CreatMusicF()
         {
             var g = Instantiate(ggg);
             g.transform.position = transform.position + Vector3.right * 1.25f +Vector3.up*2;

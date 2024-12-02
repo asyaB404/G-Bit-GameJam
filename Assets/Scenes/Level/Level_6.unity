@@ -655,11 +655,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7525145570992016023, guid: a78d0b4072df03a41bd291d4c450b75a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.95
+      value: 39.8
       objectReference: {fileID: 0}
     - target: {fileID: 7525145570992016023, guid: a78d0b4072df03a41bd291d4c450b75a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.619999
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 7525145570992016023, guid: a78d0b4072df03a41bd291d4c450b75a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1445,9 +1445,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartB: {fileID: 1449060690}
-  Music: {fileID: 8300000, guid: 2901cc469384bb048ac6f3d4a82b978f, type: 3}
+  Music: {fileID: 8300000, guid: 490c0682fc9b44546baec11de5bec38a, type: 3}
   g: {fileID: 1132543592079503921, guid: a6a53837346607b4e9c96930642cedbe, type: 3}
-  BPM: 150
+  BPM: 98
   offset: 20
   CellNum: 8
 --- !u!1 &2024292364

@@ -19,7 +19,11 @@ namespace GameTools.MonoTool
 
         public override void StartTouch(PlayerContronal player)
         {
-            Debug.LogWarning("ww");
+            
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
             GameContronal.Instance.PlayManage.Pause();
             GameContronal.Instance.Bpm *= changeBpmMul;
             GameContronal.Instance.PlayManage.Continue();

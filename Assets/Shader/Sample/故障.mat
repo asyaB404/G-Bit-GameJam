@@ -56,8 +56,8 @@ Material:
     m_Floats:
     - _Fequency: 0.4
     - _Fequency_Aphla: 0.8
-    - _Range: 0.1
-    - _Strength: 0.1
+    - _Range: 0.328
+    - _Strength: 0
     m_Colors:
     - _Speed: {r: 1, g: 1, b: 0, a: 0}
     - _Tilling: {r: 128, g: 128, b: 0, a: 0}

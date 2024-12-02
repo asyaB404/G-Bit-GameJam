@@ -35,12 +35,12 @@ public class GameContronal : MonoBehaviour
 
     //场景中的工具
     private Abs_Tool[] _tools;
-    private IUpdateOnBeat[] _updateOnBeats;
+    private AbsBaseUpdateOnBeat[] _updateOnBeats;
 
-    private int _newtimbre = 0;
-    private List<Transform> sprite = new List<Transform>();
+    private int _newTimbre = 0;
+    private readonly List<Transform> _sprites = new List<Transform>();
 
-    void Awake()
+    private void Awake()
     {
         //控制器
         PlayManage = new PlayManage();
@@ -108,12 +108,12 @@ public class GameContronal : MonoBehaviour
         var c = PlayManage.UIManage.Main.transform.parent;
         for (int i = 0; i < p.childCount; i++)
         {
-            sprite.Add(Instantiate(g, c).transform);
+            _sprites.Add(Instantiate(g, c).transform);
         }
 
         for (int i = 0; i < p.childCount; i++)
         {
-            sprite[i].position = p.GetChild(i).GetChild(_newtimbre).transform.position;
+            _sprites[i].position = p.GetChild(i).GetChild(_newTimbre).transform.position;
         }
     }
 
@@ -122,10 +122,10 @@ public class GameContronal : MonoBehaviour
         var p = PlayManage.UIManage.Main.transform;
         for (int i = 0; i < p.childCount; i++)
         {
-            sprite[i].position = p.GetChild(i).GetChild(_newtimbre).transform.position;
+            _sprites[i].position = p.GetChild(i).GetChild(_newTimbre).transform.position;
         }
 
-        _newtimbre = (_newtimbre + 1) % CellNum;
+        _newTimbre = (_newTimbre + 1) % CellNum;
     }
 
 

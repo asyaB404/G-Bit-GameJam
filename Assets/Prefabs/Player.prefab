@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1544712373317351742}
   - component: {fileID: 3023854929342788846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u6454\u6B7B\u4F60"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   player: {fileID: 3839311250269154731}
   boxSize: {x: 2.22, y: 0.55}
   boxOffset: {x: 0, y: -0.15}
+  isDie: 0
 --- !u!1 &2994456308687457363
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +61,8 @@ GameObject:
   - component: {fileID: 940496867950047980}
   - component: {fileID: 9042291219847864715}
   - component: {fileID: 3839311250269154731}
-  m_Layer: 0
+  - component: {fileID: 4629814083069531519}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +198,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 2.8754287}
-  m_Size: {x: 1, y: 5.1427083}
+  m_Size: {x: 1.5, y: 5.1427083}
   m_Direction: 0
 --- !u!114 &3839311250269154731
 MonoBehaviour:
@@ -212,6 +214,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _first: {fileID: 21300000, guid: 6d979120f59dbcf4b8d95b91f50678c0, type: 3}
   _second: {fileID: 21300000, guid: 2fa6ea52d8f0c3745b339a7eb5eba03b, type: 3}
+--- !u!114 &4629814083069531519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994456308687457363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24c25088f694d028c259456d9c54634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {x: 0.3, y: 2, z: 0}
+  rayLength: 1.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  ggg: {fileID: 6665055359766030377, guid: d0e4508f6efbbe74cbf281234e10aff4, type: 3}
 --- !u!1 &4865412579084211002
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4216394873033872962}
   - component: {fileID: 5173610749891907984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
