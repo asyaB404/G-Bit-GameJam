@@ -10,12 +10,12 @@ public class AudioManager
     private readonly Stack<AudioSource> _audioSourcePool; // 用于存储闲置的 AudioSource
     private readonly List<AudioSource> _activeAudioSources; // 当前正在使用的 AudioSource 
     private readonly GameObject _soundManagerObject; // 用于挂载 AudioSource 的 GameObject
-    private AudioSource _musicSource; 
-    private const int InitialPoolSize = 0; //初始池大小
+    private readonly AudioSource _musicSource;
+    private const int INITIAL_POOL_SIZE = 4; //初始池大小
 
     private AudioManager()
     {
-        _audioSourcePool = new Stack<AudioSource>(InitialPoolSize);
+        _audioSourcePool = new Stack<AudioSource>(INITIAL_POOL_SIZE);
         _activeAudioSources = new List<AudioSource>();
 
         // 创建一个 GameObject 用于挂载 AudioSource，并保持在场景中
@@ -23,11 +23,11 @@ public class AudioManager
         Object.DontDestroyOnLoad(_soundManagerObject);
 
         // 预先生成一定数量的 AudioSource 供复用
-        for (int i = 0; i < InitialPoolSize; i++)
+        for (int i = 0; i < INITIAL_POOL_SIZE; i++)
         {
             _audioSourcePool.Push(CreateNewAudioSource());
         }
-        
+
         _musicSource = CreateNewAudioSource();
         _musicSource.loop = true; // 背景音乐通常循环播放
     }
@@ -36,23 +36,22 @@ public class AudioManager
     {
         _activeAudioSources = activeAudioSources;
     }
-    
+
     /// <summary>
     /// 播放音效
     /// </summary>
     /// <param name="clip">要播放的音频片段</param>
     /// <param name="volume">音量大小（0.0 - 1.0）</param>
-    public AudioSource PlaySound(AudioClip clip, float volume = 1.0f)
+    public void PlaySound(AudioClip clip, float volume = 1.0f)
     {
         if (clip == null)
         {
             Debug.LogWarning("尝试播放的音效为空！");
-            return null;
         }
 
         AudioSource audioSource = GetAvailableAudioSource();
         audioSource.enabled = true;
-        if(audioSource.clip != null) Debug.LogWarning("bug");
+        if (audioSource.clip != null) Debug.LogWarning("bug");
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.Play();
@@ -62,10 +61,14 @@ public class AudioManager
 
         //在音效播放完成后回收
         RecycleAudioSourceAsync(audioSource).Forget();
-
-        return audioSource;
     }
 
+    /// <summary>
+    /// 播放音乐
+    /// </summary>
+    /// <param name="clip">要播放的音乐</param>
+    /// <param name="volume">音量大小（0.0 - 1.0）</param>
+    /// <returns>音乐组件</returns>
     public AudioSource PlayMusic(AudioClip clip, float volume = 1.0f)
     {
         _musicSource.clip = clip;
@@ -73,7 +76,7 @@ public class AudioManager
         _musicSource.Play();
         return _musicSource;
     }
-    
+
     /// <summary>
     /// 清除所有当前播放的音效，停止并回收它们
     /// </summary>
@@ -84,12 +87,14 @@ public class AudioManager
         //遍历所有活动的 AudioSource，停止播放并回收
         foreach (var audioSource in _activeAudioSources)
         {
-            audioSource.Stop();  
-            audioSource.clip = null; 
+            audioSource.Stop();
+            audioSource.clip = null;
             // _audioSourcePool.Push(audioSource); 会导致两次回收
         }
+
         _activeAudioSources.Clear();
     }
+
     #region Private
 
     private AudioSource CreateNewAudioSource()

@@ -18,19 +18,15 @@ public class GameContronal : MonoBehaviour
     #endregion
 
     public GameObject g;
-    
-    private PlayManage _playManage;
-    public PlayManage PlayManage => _playManage;
+
+    public PlayManage PlayManage { get; private set; }
 
     //人物控制器
-    private PlayerContronal _player;
-    public PlayerContronal Player => _player;
+    public PlayerContronal Player { get; private set; }
 
-
-    //BPM数值
     [SerializeField, Header("BPM数值")] private int BPM;
 
-    [SerializeField] private float offset;
+    [SerializeField] private float offset = 0.2f;
 
     [Header("鼓点器格子数"), SerializeField] private int CellNum = 8;
 
@@ -47,20 +43,21 @@ public class GameContronal : MonoBehaviour
     void Awake()
     {
         //控制器
-        _playManage = new PlayManage();
-        _player = FindObjectOfType<PlayerContronal>();
+        PlayManage = new PlayManage();
+        Player = FindObjectOfType<PlayerContronal>();
 
         //添加格子
-        _playManage.AddCell(CellNum);
+        PlayManage.AddCell(CellNum);
 
         //找到场景中工具(平台)
         _tools = FindObjectsOfType<Abs_Tool>();
         _updateOnBeats = FindObjectsOfType<AbsBaseUpdateOnBeat>();
         foreach (var item in _updateOnBeats)
         {
-            _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore, item.UpdateOnBeat);
+            PlayManage.EventManager.AddListener(PlayEvent.OnHitsBefore, item.UpdateOnBeat);
         }
-        _playManage.EventManager.AddListener(PlayEvent.OnHitsBefore, AAA);
+
+        PlayManage.EventManager.AddListener(PlayEvent.OnHitsBefore, TimbreMoveAnim);
     }
 
     /// <summary>
@@ -81,7 +78,7 @@ public class GameContronal : MonoBehaviour
         if (!_timbre.Contains(t))
         {
             _timbre.Add(t);
-            _playManage.AddTimbre(t);
+            PlayManage.AddTimbre(t);
             Debug.Log("成功添加音色和绑定工具" + t);
             return;
         }
@@ -91,39 +88,38 @@ public class GameContronal : MonoBehaviour
 
     private void Start()
     {
-        StartB.onClick.AddListener((() => { play(); }));
+        StartB.onClick.AddListener((() => { Play(); }));
     }
 
-    async void play()
+    private async void Play()
     {
-        await UniTask.WaitForSeconds(0.2f);
-        _playManage.UIManage.Main.transform.parent.GetChild(2).gameObject.SetActive(true);
+        await UniTask.WaitForSeconds(offset);
+        PlayManage.UIManage.Main.transform.parent.GetChild(2).gameObject.SetActive(true);
         AudioSource mainmusic = null;
         if (Music != null)
         {
             mainmusic = AudioManager.Instance.PlayMusic(Music);
         }
-        StartCoroutine(_playManage.Play(BPM, mainmusic));
-        
-        
-        
-        var p = _playManage.UIManage.Main.transform;
-        var c = _playManage.UIManage.Main.transform.parent;
+
+        StartCoroutine(PlayManage.Play(BPM, mainmusic));
+
+
+        var p = PlayManage.UIManage.Main.transform;
+        var c = PlayManage.UIManage.Main.transform.parent;
         for (int i = 0; i < p.childCount; i++)
         {
             sprite.Add(Instantiate(g, c).transform);
         }
+
         for (int i = 0; i < p.childCount; i++)
         {
             sprite[i].position = p.GetChild(i).GetChild(_newtimbre).transform.position;
         }
-        
-        
     }
 
-    void AAA()
+    private void TimbreMoveAnim()
     {
-        var p = _playManage.UIManage.Main.transform;
+        var p = PlayManage.UIManage.Main.transform;
         for (int i = 0; i < p.childCount; i++)
         {
             sprite[i].position = p.GetChild(i).GetChild(_newtimbre).transform.position;
