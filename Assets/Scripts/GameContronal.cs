@@ -24,9 +24,9 @@ public class GameContronal : MonoBehaviour
     //人物控制器
     public PlayerContronal Player { get; private set; }
 
-    [SerializeField, Header("BPM数值")] private int BPM;
+    [SerializeField, Header("BPM数值")] private double BPM;
 
-    [SerializeField] private float offset = 0.2f;
+    [SerializeField] private int offset = 20;
 
     [Header("鼓点器格子数"), SerializeField] private int CellNum = 8;
 
@@ -93,7 +93,7 @@ public class GameContronal : MonoBehaviour
 
     private async void Play()
     {
-        await UniTask.WaitForSeconds(offset);
+        await UniTask.Delay(offset);
         PlayManage.UIManage.Main.transform.parent.GetChild(2).gameObject.SetActive(true);
         AudioSource mainmusic = null;
         if (Music != null)
@@ -146,7 +146,7 @@ public class GameContronal : MonoBehaviour
         }
     }
 
-    public int Bpm
+    public double Bpm
     {
         get => BPM;
         set => BPM = value;

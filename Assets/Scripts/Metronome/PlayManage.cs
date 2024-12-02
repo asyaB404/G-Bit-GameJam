@@ -56,7 +56,7 @@ public class PlayManage
     /// 播放音乐
     /// </summary>
     /// <param name="bpm">BPM</param>
-    public IEnumerator Play(int bpm, AudioSource musicSource)
+    public IEnumerator Play(double bpm, AudioSource musicSource)
     {
         //如果游戏已经开始返回
         if (_isplaying)
@@ -68,7 +68,7 @@ public class PlayManage
 
         //开始游戏
         _isplaying = true;
-        double timestep = ((60d / bpm));
+        double timeStep = 60d / bpm;
         //执行游戏开始等等全局事件
         _eventManager.Dispatch(PlayEvent.OnStartPlay);
 
@@ -78,7 +78,7 @@ public class PlayManage
             V.Key.EventManager.Dispatch(TimbreEvent.BeginPlay);
         }
 
-        var _timer = timestep;
+        var _timer = timeStep;
 
         while (true)
         {
@@ -93,11 +93,8 @@ public class PlayManage
             {
                 //执行游戏暂停的事件
                 _eventManager.Dispatch(PlayEvent.OnPausePlay);
-
-                //await UniTask.WaitUntil(() => !_ispaused);
                 yield return new WaitUntil(() => !_ispaused);
-
-                //执行游戏进行的事件
+                timeStep = 60d / GameContronal.Instance.Bpm;
                 _eventManager.Dispatch(PlayEvent.OnContinuePlay);
             }
 
@@ -111,16 +108,16 @@ public class PlayManage
                 //执行游戏本节拍后的事件
                 _eventManager.Dispatch(PlayEvent.OnHitsAfter);
 
-                _timer += timestep;
+                _timer += timeStep;
             }
 
             yield return new WaitForNextFrameUnit();
         }
 
         //所有音色结束的事件
-        foreach (var V in _controller.Manager.Metronomemanage)
+        foreach (var v in _controller.Manager.Metronomemanage)
         {
-            V.Key.EventManager.Dispatch(TimbreEvent.EndPlay);
+            v.Key.EventManager.Dispatch(TimbreEvent.EndPlay);
         }
     }
 
@@ -128,7 +125,7 @@ public class PlayManage
     /// <summary>
     /// 暂停
     /// </summary>
-    public void Puase()
+    public void Pause()
     {
         _ispaused = true;
     }
@@ -163,7 +160,7 @@ public class PlayManage
         }
     }
 
-    public void DelectTimbre(ITimbre timbre)
+    public void DeleteTimbre(ITimbre timbre)
     {
         _controller.DeleteTimbre(_uimanage, timbre);
         _uimanage.DeleteTimbre(timbre);
