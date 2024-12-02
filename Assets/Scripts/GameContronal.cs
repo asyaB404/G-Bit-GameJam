@@ -111,8 +111,8 @@ public class GameContronal : MonoBehaviour
         {
             _sprites[i].position = p.GetChild(i).GetChild(_newTimbre).transform.position;
         }
-        await UniTask.Delay(offset); 
-        StartCoroutine(PlayManage.Play(BPM, mainmusic));
+
+        StartCoroutine(PlayManage.Play(mainmusic, offset / 1000d));
     }
 
     private void TimbreMoveAnim()

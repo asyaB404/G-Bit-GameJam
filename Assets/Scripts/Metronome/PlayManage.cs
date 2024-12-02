@@ -55,8 +55,9 @@ public class PlayManage
     /// <summary>
     /// 播放音乐
     /// </summary>
-    /// <param name="bpm">BPM</param>
-    public IEnumerator Play(double bpm, AudioSource musicSource)
+    /// <param name="musicSource"></param>
+    /// <param name="offset"></param>
+    public IEnumerator Play(AudioSource musicSource, double offset)
     {
         //如果游戏已经开始返回
         if (_isplaying)
@@ -77,7 +78,7 @@ public class PlayManage
             V.Key.EventManager.Dispatch(TimbreEvent.BeginPlay);
         }
 
-        var _timer = 0d;
+        var timer = offset;
 
         while (true)
         {
@@ -96,7 +97,7 @@ public class PlayManage
                 _eventManager.Dispatch(PlayEvent.OnContinuePlay);
             }
 
-            if (musicSource.isPlaying && musicSource.time >= _timer)
+            if (musicSource.isPlaying && musicSource.time >= timer)
             {
                 //执行游戏本节拍前的事件
                 _eventManager.Dispatch(PlayEvent.OnHitsBefore);
@@ -106,7 +107,7 @@ public class PlayManage
                 //执行游戏本节拍后的事件
                 _eventManager.Dispatch(PlayEvent.OnHitsAfter);
 
-                _timer += 60d / GameContronal.Instance.Bpm;
+                timer += 60d / GameContronal.Instance.Bpm;
             }
 
             yield return new WaitForNextFrameUnit();
