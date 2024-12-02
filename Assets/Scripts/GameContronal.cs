@@ -88,21 +88,17 @@ public class GameContronal : MonoBehaviour
 
     private void Start()
     {
-        StartB.onClick.AddListener((() => { Play(); }));
+        StartB.onClick.AddListener(Play);
     }
 
     private async void Play()
     {
-        await UniTask.Delay(offset);
         PlayManage.UIManage.Main.transform.parent.GetChild(2).gameObject.SetActive(true);
         AudioSource mainmusic = null;
         if (Music != null)
         {
             mainmusic = AudioManager.Instance.PlayMusic(Music);
         }
-
-        StartCoroutine(PlayManage.Play(BPM, mainmusic));
-
 
         var p = PlayManage.UIManage.Main.transform;
         var c = PlayManage.UIManage.Main.transform.parent;
@@ -115,6 +111,8 @@ public class GameContronal : MonoBehaviour
         {
             _sprites[i].position = p.GetChild(i).GetChild(_newTimbre).transform.position;
         }
+        await UniTask.Delay(offset); 
+        StartCoroutine(PlayManage.Play(BPM, mainmusic));
     }
 
     private void TimbreMoveAnim()

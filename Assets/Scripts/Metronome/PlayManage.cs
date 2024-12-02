@@ -77,7 +77,7 @@ public class PlayManage
             V.Key.EventManager.Dispatch(TimbreEvent.BeginPlay);
         }
 
-        var _timer = 60d / GameContronal.Instance.Bpm;
+        var _timer = 0d;
 
         while (true)
         {
