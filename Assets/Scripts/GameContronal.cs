@@ -91,7 +91,7 @@ public class GameContronal : MonoBehaviour
         StartB.onClick.AddListener(Play);
     }
 
-    private async void Play()
+    private void Play()
     {
         PlayManage.UIManage.Main.transform.parent.GetChild(2).gameObject.SetActive(true);
         AudioSource mainmusic = null;

@@ -27,6 +27,7 @@ namespace GameTools.MonoTool
             GameContronal.Instance.PlayManage.Pause();
             GameContronal.Instance.Bpm *= changeBpmMul;
             GameContronal.Instance.PlayManage.Continue();
+            gameObject.SetActive(false);
         }
 
         public override void EndTouch(PlayerContronal player)
